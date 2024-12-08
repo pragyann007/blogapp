@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const cors = require('cors');
-const URL = 'mongodb+srv://<username>:<password>@<cluster-url>/<databaseName>?retryWrites=true&w=majority';
+const URL = 'mongodb+srv://<pragyann007>:<pragyann@123@blog@app>@<cluster-url>/<databaseName>?retryWrites=true&w=majority';
 
 // mongodb config 
 mongoose.connect(URL, {
