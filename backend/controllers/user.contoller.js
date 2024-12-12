@@ -3,12 +3,12 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 
 
-const signin_func =  async (req, res) => {
+const signup_func =  async (req, res) => {
     try {
-        const { name, email, password } = req.body;
+        const { username, email, password } = req.body;
 
         // Validate input
-        if (!name || !email || !password) {
+        if (!username || !email || !password) {
             return res.status(400).json({ error: "All fields are required" });
         }
 
@@ -18,7 +18,7 @@ const signin_func =  async (req, res) => {
 
         // Create the user
         const data = await User.create({
-            name,
+            username,
             email,
             password: hash
         });
@@ -72,6 +72,6 @@ const login_func = async (req, res) => {
 
 module.exports = {
     login_func,
-    signin_func,
+    signup_func,
     
 }
