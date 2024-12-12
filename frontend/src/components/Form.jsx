@@ -2,6 +2,7 @@ import React from "react";
 
 const Form = ({ type, toggle }) => {
   const isSignIn = type === "sign-in";
+ 
 
   return (
     <div className={`form-wrapper align-items-center`}>
@@ -17,7 +18,7 @@ const Form = ({ type, toggle }) => {
               <i className="fas fa-lock"></i>
               <input type="password" placeholder="Password" />
             </div>
-            <button>Sign In</button>
+            <button >Sign In</button>
             <p className="forgot-pass">
               <b>Forgot password?</b>
             </p>
