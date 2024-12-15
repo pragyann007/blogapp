@@ -1,10 +1,15 @@
 const express = require('express');
 const router = express.Router();
 
-router.post('/login',(req,res)=>{
-    res.send("sign up route created ")
-})
+const { login_func, signup_func } = require('../controllers/user.contoller');
 
-router.post('login',(req,res)=>{
-    res.send("login route created")
-})
+// Middleware to parse JSON bodies
+router.use(express.json());
+
+// Signup route
+router.post('/signup',signup_func);
+
+// Login route
+router.post('/login',login_func);
+
+module.exports = router;

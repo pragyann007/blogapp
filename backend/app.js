@@ -1,26 +1,38 @@
 const express = require('express');
 const app = express();
-const user = require('./routes/user')
-const blog  = require('./routes/blog ')
-const category = require('./routes/category')
-const comment = require('./routes/comment')
+const mongoose = require('mongoose');
 const cors = require('cors');
+
+// mongodb config 
+mongoose.connect("mongodb://localhost:27017", )
+  .then(() => {
+      console.log('Connected to MongoDB ');
+  })
+  .catch((err) => {
+      console.error('Error connecting to MongoDB Atlas:',);
+  });
+app.use(express.json());
+app.use(express.urlencoded({extended:true}))
+// Import routes
+const userRoutes = require('./routes/user'); // Adjust path if necessary
+const blogRoutes = require('./routes/blog');
+const categoryRoutes = require('./routes/category');
+const commentRoutes = require('./routes/comment');
 
 // Configure CORS
 const corsOptions = {
-    origin: '*', // Allow all origins (adjust as per your needs)
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
-    allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
-  };
-  
-  // Apply CORS middleware
-  app.use(cors(corsOptions));
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+};
+app.use(cors(corsOptions));
+
+// Main routing
+app.use('/user', userRoutes);
+app.use('/blog', blogRoutes);
+app.use('/category', categoryRoutes);
+app.use('/comment', commentRoutes);
 
 
-//   main routing 
-app.use('/user',user);
-app.use('/comment',comment);
-app.use('/category',category);
-app.use('/bog',blog);
 
-
+module.exports = app;
